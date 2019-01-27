@@ -1,0 +1,181 @@
+/*
+=========================
+VARIABLES & MIXINS
+=========================
+*/
+
+$color--base: #222;
+$color--fb: #3b5998;
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin mobile-sm {
+  @media (max-width: 360px) {
+    @content;
+  }
+}
+
+/*
+=========================
+RESET STYLES
+=========================
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+body {
+  line-height: 1.25;
+  color: black;
+  background: white;
+}
+ol, ul {
+  list-style: none;
+}
+strong {
+  font-weight: bold;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: inherit;
+  /* cursor: default; */
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: button; /* for input */
+  -webkit-user-select: none; /* for button */
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/*
+=========================
+DOCUMENT STYLES
+=========================
+*/
+
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  background: #fff;
+}
+
+body {
+  z-index: 0;
+  font-family: arial, 'Lato';
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  background: url('../img/background.jpeg');
+  background-size: cover;
+}
+
+.container--user {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user {
+  &__score {
+    font-size: 36px;
+    font-weight: bold;
+  }
+}
+
+.container--buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  height: 32px;
+  color: $color--base;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: arial;
+  border-radius: 2px;
+  padding: 0 24px;
+  border: 1px solid $color--base;
+  max-width: 200px;
+  min-width: 160px;
+  margin-top: 20px;
+  &:disabled {
+    color: #eaeaea;
+    border: 1px solid #eaeaea;
+  }
+}
+
+.container--share {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.25);
+  width: 100%;
+}
+
+p > a {
+  text-decoration: none;
+  color: #4267B2;
+  cursor: pointer;
+}
+p > a:visited, p > a:hover, p > a:active {
+  text-decoration: none;
+  color: #4267B2;
+  cursor: pointer;
+}
+
