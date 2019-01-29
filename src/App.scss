@@ -111,12 +111,17 @@ html {
 body {
   z-index: 0;
   font-family: arial, 'Lato';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 100%;
   padding: 0;
   margin: 0;
   position: relative;
   overflow: hidden;
-  background: url('../img/background.jpeg');
+  background: url('background.jpeg');
   background-size: cover;
 }
 
@@ -160,12 +165,27 @@ body {
   }
 }
 
-.container--share {
+.container--social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   bottom: 0;
   height: 40px;
   background: rgba(255, 255, 255, 0.25);
   width: 100%;
+}
+
+.social-media__item {
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  a {
+    color: $color--base;
+    font-size: 18px;
+    padding: 10px;
+    line-height: 36px;
+  }
 }
 
 p > a {
