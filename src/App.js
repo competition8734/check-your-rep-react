@@ -4,7 +4,6 @@ import './App.scss';
 class App extends Component {
 
   componentDidMount () {
-    //window.IN.init({ api_key: '7721znq5saewz1' })
   }
 
   state = { 
