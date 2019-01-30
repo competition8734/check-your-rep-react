@@ -20,7 +20,7 @@ class App extends Component {
     }, function(response){})
   }
 
-  updateScore = (curr, added, button) => {
+  updateScore = (curr, added) => {
     let end = curr + added
     let ticks = 20
     let speed = 40
