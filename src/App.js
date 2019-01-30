@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './App.scss';
+import LinkedIn from './Linkedin.js';
+import Facebook from './Facebook.js';
 
 class App extends Component {
-
-  componentDidMount () {
-  }
 
   state = { 
     score: 0, 
@@ -12,39 +11,16 @@ class App extends Component {
     linkedinButtonDisabled: false
   }
 
-  onFacebookLogin = () => {
-    window.FB.login( (response) => {
-      if ( response.status === 'connected' ) {
-        this.updateScore( this.state.score, 10 )
-        this.setState({ facebookButtonDisabled: true })
-      } else {
-        console.log( 'Not authenticated' )
-      }
-    })
-  }
-
-  onLinkedInLogin = () => {
-    window.IN.User.authorize(() => {
-      window.IN.Event.on(
-        window.IN, 
-        "auth", 
-        window.IN.API.Raw("/people/~")
-          .result( this.updateScore( this.state.score, 10 ) )
-          .error( console.log( 'error' )) 
-      )
-    })
-  }
-
   onFacebookShare = () => {
     window.FB.ui({
       method: 'share',
       display: 'popup',
       href: 'https://google.com',
-      quote: `You have a reputation score of ${this.state.score}`
-    }, function(response){});
+      quote: `You have a reputation score of ${this.state.score}\nShare it with the world`
+    }, function(response){})
   }
 
-  updateScore = (curr, added) => {
+  updateScore = (curr, added, button) => {
     let end = curr + added
     let ticks = 20
     let speed = 40
@@ -72,6 +48,12 @@ class App extends Component {
     this.setState({ score: end })
   }
 
+  onSuccess = (button) => {
+    this.updateScore( this.state.score, 10 )
+    const b = `${button}ButtonDisabled`
+    this.setState({[b]: true });
+  }
+
   render () {
     return (
       
@@ -87,25 +69,23 @@ class App extends Component {
         </div>
 
         <div className='container container--buttons'>
-          <button 
-            className='button button--facebook'
-            onClick={() => { this.onFacebookLogin() }}
-            disabled={ this.state.facebookButtonDisabled }
-          >Facebook
-          </button>
-          <button 
-            className='button button--linkedin' 
-            onClick={() => { this.onLinkedInLogin() }}
-            disabled={ this.state.linkedinButtonDisabled }
-          >Linkedin
-          </button>
+          <Facebook
+            onSuccess={() => this.onSuccess( 'facebook' ) }
+            disabled={this.state.facebookButtonDisabled}
+          >
+          </Facebook>
+          <LinkedIn
+            onSuccess={() => this.onSuccess( 'linkedin' ) }
+            disabled={this.state.linkedinButtonDisabled}
+          >
+          </LinkedIn>
         </div>
 
         <div className='container container--social-media'>
           <div className='social-media__item'>
             <a
               href='/'
-              onClick={() => { this.onFacebookShare() }}
+              onClick={() => this.onFacebookShare() }
             >
               <i className='fa fa-facebook'></i>
             </a>
