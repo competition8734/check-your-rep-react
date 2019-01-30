@@ -22,8 +22,6 @@ export default class Facebook extends Component {
     window.FB.login( (response) => {
       if ( response.status === 'connected' ) {
         success()
-        // this.updateScore( this.state.score, 10 )
-        // this.setState({ facebookButtonDisabled: true })
       } else {
         console.log( 'Not authenticated' )
       }

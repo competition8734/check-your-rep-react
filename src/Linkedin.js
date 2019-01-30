@@ -12,7 +12,6 @@ export default class LinkedIn extends Component {
     }
   }
 
-
   onLinkedInLogin = (success) => {
     window.IN.User.authorize(function(){
       window.IN.API.Raw("/people/~")
