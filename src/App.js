@@ -11,13 +11,14 @@ class App extends Component {
     linkedinButtonDisabled: false
   }
 
-  onFacebookShare = () => {
-    window.FB.ui({
-      method: 'share',
-      display: 'popup',
-      href: 'https://google.com',
-      quote: `You have a reputation score of ${this.state.score}\nShare it with the world`
-    }, function(response){})
+  shareScore = () => {
+    let url = `https://reputationscore.com?name=greg&score=${this.state.score}`
+    const textField = document.createElement('textarea')
+    textField.innerText = url
+    document.body.appendChild(textField)
+    textField.select()
+    document.execCommand('copy')
+    textField.remove()
   }
 
   updateScore = (curr, added) => {
@@ -81,15 +82,12 @@ class App extends Component {
           </LinkedIn>
         </div>
 
-        <div className='container container--social-media'>
-          <div className='social-media__item'>
-            <a
-              href='/'
-              onClick={() => this.onFacebookShare() }
-            >
-              <i className='fa fa-facebook'></i>
-            </a>
-          </div>
+        <div className='container container--footer'>
+          <button 
+            className='button button--share'
+            onClick={() => this.shareScore()}
+          >Share with your friends
+          </button>
         </div>
 
       </div>
