@@ -5,6 +5,14 @@ import Facebook from './Facebook.js';
 
 class App extends Component {
 
+  componentDidMount () {
+    let url = window.location.href
+    let re = /score=(.*)/
+    const score = url.match(re)
+    if(score !== null) 
+      this.setState({ score: score[1] })
+  }
+
   state = { 
     score: 0, 
     facebookButtonDisabled: false,
@@ -12,7 +20,7 @@ class App extends Component {
   }
 
   shareScore = () => {
-    let url = `https://reputationscore.com?name=greg&score=${this.state.score}`
+    let url = `http://localhost:3000?name=greg&score=${this.state.score}`
     const textField = document.createElement('textarea')
     textField.innerText = url
     document.body.appendChild(textField)
